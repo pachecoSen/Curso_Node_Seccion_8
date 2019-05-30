@@ -1,0 +1,21 @@
+{
+  "name": "curso_node",
+  "version": "1.0.0",
+  "description": "REST Server - Configuraciones iniciales",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "nodemon": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pachecoSen/Curso_Node_Seccion_8.git"
+  },
+  "author": "Ignacio Pacheco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pachecoSen/Curso_Node_Seccion_8/issues"
+  },
+  "homepage": "https://github.com/pachecoSen/Curso_Node_Seccion_8#readme"
+}
