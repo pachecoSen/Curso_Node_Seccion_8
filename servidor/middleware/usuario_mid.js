@@ -11,7 +11,9 @@ usuarioMid.setData = (req, res, next) => {
             res.status(400).json({
                 "estatus" : false,
                 "res": 'Falta nombre'
-            });
+            }).end();
+
+            return false;
         }
     }
 
