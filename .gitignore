@@ -1,2 +1,8 @@
+#Node
+/node_modules
+
 #Editores
 *.code-workspace
+
+#Otros
+package-lock.json
