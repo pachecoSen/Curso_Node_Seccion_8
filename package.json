@@ -4,7 +4,7 @@
   "description": "REST Server - Configuraciones iniciales",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node app.js -s pro",
     "nodemon": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,7 +19,17 @@
   },
   "homepage": "https://github.com/pachecoSen/Curso_Node_Seccion_8#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "terminal-kit": "^1.28.0"
+    "is-empty": "^1.2.0",
+    "module-alias": "^2.2.0",
+    "terminal-kit": "^1.28.0",
+    "yargs": "^13.2.4"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0"
+  },
+  "_moduleAliases": {
+    "@basemiddleware": "./servidor/middleware"
   }
 }
