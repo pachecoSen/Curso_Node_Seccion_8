@@ -13,8 +13,8 @@ const log = require('@logs');
 app.listen(PORT, () => {
     terminal().green(`Servidor iniciado en ${ IP }:${ PORT }`);
     db.connection.on('error', err => {
-        terminal().red(`${ '\n' }Conexion de Base de Datos... failed`);
         log('./logs/db_err', err);
+        terminal().red(`${ '\n' }Conexion de Base de Datos... failed`);
 
         process.exit();
     });
