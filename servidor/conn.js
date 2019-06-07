@@ -6,6 +6,6 @@ const { entorno } = require('@confi/yargs'),
 
 const mongoose = require('mongoose');
 
-mongoose.connect(`mongodb://${ IP }:${ PORTDB }/${ DB }`, {useNewUrlParser: true});
+mongoose.connect(`mongodb://${ IP }:${ PORTDB }/${ DB }`, { 'useNewUrlParser': true });
 
 module.exports = mongoose;

@@ -11,4 +11,9 @@ dev.IP = process.env.IP || 'localhost';
 dev.PORTDB = 27017;
 dev.DB = 'cafe';
 
+/**
+ * Configuracion Hash
+ */
+dev.CICLOS = 15;
+
 module.exports = dev;

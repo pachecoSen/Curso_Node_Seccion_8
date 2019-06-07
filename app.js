@@ -3,8 +3,7 @@
 const { entorno } = require('./config/yargs'),
     { PORT, IP } = require('./config')[entorno];
 
-const { Terminal:terminal } = require('terminal-kit'),
-    empty = require('is-empty');
+const { Terminal:terminal } = require('terminal-kit');
 
 const app = require('./servidor');
 const db = require('./servidor/conn');
@@ -16,5 +15,7 @@ app.listen(PORT, () => {
     db.connection.on('error', err => {
         terminal().red(`${ '\n' }Conexion de Base de Datos... failed`);
         log('./logs/db_err', err);
+
+        process.exit();
     });
 });
