@@ -12,6 +12,7 @@ const newShema = new Schema(usuarioSchema)
 newShema.methods.toJSON = function () {
     let user = this.toObject();
     delete user.password;
+    delete user.__v;
 
     return user;
 }

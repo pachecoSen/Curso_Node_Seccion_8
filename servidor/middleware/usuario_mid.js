@@ -40,20 +40,11 @@ usuarioMid.setData = (req, res, next) => {
         req.body = _.pick(req.body, 'nombre', 'role', 'email', 'img', 'estado');
     }
 
-    if(`${ base_uri }/:id?` === _path){
-        if(empty(req.query.pag) || 1 > req.query.pag)
+    if(`${ base_uri }/search/:id?` === _path){
+        if(empty(req.query.pag) && empty(req.params.id))
+            return res.status(400).json({ "estatus" : false, "res": `Sin Parametro o ID.` }).end();
+        if(empty(req.params.id) && 1 > req.query.pag)
             return res.status(400).json({ "estatus" : false, "res": `Parametro pag faltante o menor a 1.` }).end();
-    }
-
-    return next();
-}
-
-usuarioMid.setParams = (req, res, next) => {
-    
-    const { path } = req.route;
-    if(`${ base_uri }/chnage/:id` === path){
-        if(empty(req.params.id))
-            return res.status(400).json({ "estatus" : false, "res": `Dato id faltante o incorrecto.` }).end();
     }
 
     return next();

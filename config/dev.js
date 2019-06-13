@@ -8,8 +8,7 @@ dev.IP = process.env.IP || 'localhost';
 /**
  * Configuracion MongoDB
 */
-dev.PORTDB = 27017;
-dev.DB = 'cafe';
+dev.URL_HOST = `mongodb://${ dev.IP }:27017/cafe`;
 
 /**
  * Configuracion Hash

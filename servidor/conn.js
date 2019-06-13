@@ -2,10 +2,10 @@
 require('module-alias/register');
 
 const { entorno } = require('@confi/yargs'),
-    { IP, PORTDB, DB } = require('@confi')[entorno];
+    { URL_HOST } = require('@confi')[entorno];
 
 const mongoose = require('mongoose');
 
-mongoose.connect(`mongodb://${ IP }:${ PORTDB }/${ DB }`, { 'useNewUrlParser': true });
+mongoose.connect(URL_HOST, { 'useNewUrlParser': true, 'useCreateIndex' : true });
 
 module.exports = mongoose;

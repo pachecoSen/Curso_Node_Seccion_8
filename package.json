@@ -25,9 +25,9 @@
     "ip": "^1.1.5",
     "is-empty": "^1.2.0",
     "module-alias": "^2.2.0",
-    "mongoose": "^5.5.12",
+    "mongoose": "^5.5.15",
     "mongoose-unique-validator": "^2.0.3",
-    "terminal-kit": "^1.28.0",
+    "terminal-kit": "^1.28.1",
     "underscore": "^1.9.1",
     "yargs": "^13.2.4"
   },
@@ -37,6 +37,7 @@
   "_moduleAliases": {
     "@baseserver": "./servidor",
     "@basemiddleware": "./servidor/middleware",
+    "@basehelping": "./servidor/helping",
     "@basemodel": "./servidor/model",
     "@confi": "./config",
     "@logs": "./logs"

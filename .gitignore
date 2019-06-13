@@ -10,3 +10,4 @@
 #Otros
 package-lock.json
 .eslintrc.js
+/doc/key.txt

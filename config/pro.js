@@ -10,8 +10,7 @@ dev.IP = process.env.IP || address();
 /**
  * Configuracion MongoDB
 */
-dev.PORTDB = 27017;
-dev.DB = 'cafe';
+dev.URL_HOST = 'mongodb+srv://root:RC3KkYtOvnVypTRX@cluster0-lfls9.gcp.mongodb.net/cafe?retryWrites=true&w=majority';
 
 /**
  * Configuracion Hash
