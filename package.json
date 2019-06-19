@@ -24,6 +24,7 @@
     "express": "^4.17.1",
     "ip": "^1.1.5",
     "is-empty": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
     "module-alias": "^2.2.0",
     "mongoose": "^5.5.15",
     "mongoose-unique-validator": "^2.0.3",

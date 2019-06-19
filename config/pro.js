@@ -2,19 +2,21 @@
 
 const { address } = require('ip');
 
-const dev = {};
+const pro = {};
 
-dev.PORT = process.env.PORT || 8080;
-dev.IP = process.env.IP || address();
+pro.PORT = process.env.PORT || 8080;
+pro.IP = process.env.IP || address();
 
 /**
  * Configuracion MongoDB
 */
-dev.URL_HOST = `mongodb+srv://${ process.env.MONGODBUSER }:${ process.env.MONGODBPASSWORD }@cluster0-lfls9.gcp.mongodb.net/cafe?retryWrites=true&w=majority`;
+pro.URL_HOST = `mongodb+srv://${ process.env.MONGODBUSER }:${ process.env.MONGODBPASSWORD }@cluster0-lfls9.gcp.mongodb.net/cafe?retryWrites=true&w=majority`;
 
 /**
  * Configuracion Hash
  */
-dev.CICLOS = 15;
+pro.CICLOS = 15;
+pro.SECRET_TOKEN = process.env.ITSECRET;
+pro.CADUCA = process.env.TIME_CADUCA;
 
-module.exports = dev;
+module.exports = pro;

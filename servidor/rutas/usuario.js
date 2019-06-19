@@ -3,19 +3,18 @@ require('module-alias/register');
 
 const empty = require('is-empty');
 
-const { setData } = require('@basemiddleware/usuario_mid'),
-    encriptor = require('@basemiddleware/password_mid');
+const encriptor = require('@basemiddleware/password_mid');
 
 const ModelUsuarioData = require('@basemodel/usuario_mod');
 
-const Query = new require('@basehelping/query.js');
+const Query = new require('@basehelping/query');
 
 const log = require('@logs');
 
 const base_uri = '/sys/user';
 
 module.exports = app => {
-    app.post(`${ base_uri }/new`, setData, encriptor, (req, res) => {
+    app.post(`${ base_uri }/new`, encriptor, (req, res) => {
         const { nombre, email, password, img, role, estado, google } = req.body;
         const usuario = new ModelUsuarioData({nombre, email, password, img, role, estado, google});
         usuario.save((err, usuario) => {
@@ -28,7 +27,7 @@ module.exports = app => {
         });
     });
 
-    app.post(`${ base_uri }/chnage/:id`, setData, (req, res) => {
+    app.post(`${ base_uri }/chnage/:id`, (req, res) => {
         const { params, body } = req;
         ModelUsuarioData.findByIdAndUpdate(params.id, body, {'new' : true, 'runValidators' : true, 'context' : 'query'}, (err, usuario) => {
             if(err){
@@ -53,7 +52,7 @@ module.exports = app => {
         });
     });
 
-    app.get(`${ base_uri }/search/:id?`, setData, (req, res) => {
+    app.get(`${ base_uri }/search/:id?`, (req, res) => {
         const { pag, cant:limit } = req.query;
         const search = Query.setModelo(ModelUsuarioData);
         if(empty(req.params.id)){

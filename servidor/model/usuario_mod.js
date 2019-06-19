@@ -1,4 +1,5 @@
 "use strict";
+require('module-alias/register');
 
 const uniqueValide = require('mongoose-unique-validator');
 

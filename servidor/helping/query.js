@@ -1,9 +1,11 @@
 "use strict";
+require('module-alias/register');
 
 const { entorno } = require('@confi/yargs'),
     { PAGINADO } = require('@confi')[entorno];
 
-const empty = require('is-empty');
+const empty = require('is-empty'),
+    _ = require('underscore');
 
 class Query {
     constructor() {
@@ -76,8 +78,8 @@ class Query {
     }
 
     find(){
-        const { modelo, pagina, limite, filtro, value, select } = this;
-        if(empty(filtro) || empty(value)){
+        let { modelo, pagina, limite, filtro, value, select } = this;
+        if(empty(filtro) && empty(value)){
             return modelo.find({'estado' : true}, select)
                 .skip(pagina).limit(limite)
                 .exec().then(row_s => {
@@ -85,10 +87,11 @@ class Query {
                 });
         }
 
+        let where = !_.isObject(filtro) ? {} : filtro;
+        if(!_.isObject(filtro))
+            where[`${filtro}`] = value;
 
-        let where = {};
-        where[filtro] = value;
-        return modelo.find(where).exec().then(row_s => { return { row_s }; });
+        return modelo.find(where, select).exec().then(row_s => { return { row_s }; });
     }
 
     inf(){
