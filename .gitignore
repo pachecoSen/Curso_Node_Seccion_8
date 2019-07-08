@@ -11,3 +11,4 @@
 package-lock.json
 .eslintrc.js
 /doc/key.txt
+heroku_push.bat

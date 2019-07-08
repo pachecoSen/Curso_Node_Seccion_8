@@ -20,6 +20,7 @@ module.exports = app => {
         search.find()
             .then(result => result.row_s)
             .then(result => {
+                console.log('res', result);
                 if(empty(result))
                     return res.status(200).json({ "estatus" : false, "result" : `err: Datos incorrectos` });
 
