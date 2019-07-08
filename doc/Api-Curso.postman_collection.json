@@ -9,6 +9,26 @@
 		{
 			"name": "Nuevo Usuario",
 			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "token",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
@@ -36,6 +56,67 @@
 				}
 			},
 			"response": [
+				{
+					"name": "Nuevo Usuario - 401 - Sin token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombre\" : \"Ignacio Cruz\",\n\t\"email\" : \"pacheco20@outlook.es\",\n\t\"password\" : \"Alpha12345\",\n\t\"role\" : \"SUPER_ROLE\",\n\t\"estado\" : 1,\n\t\"google\" : 0\n}"
+						},
+						"url": {
+							"raw": "localhost:1000/sys/user/new",
+							"host": [
+								"localhost"
+							],
+							"port": "1000",
+							"path": [
+								"sys",
+								"user",
+								"new"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "43"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2b-mr38iIjmu2vmmZpSMWRJVQZwo7g\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 18 Jun 2019 16:29:55 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"estatus\": false,\n    \"result\": \"err: Sin token\"\n}"
+				},
 				{
 					"name": "Nuevo Usuario - 400 - email - validacion",
 					"originalRequest": {
@@ -224,6 +305,26 @@
 		{
 			"name": "Actualizar Usuario",
 			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "token",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
@@ -375,12 +476,94 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"estatus\": true,\n    \"usuario\": {\n        \"role\": \"SUPER_ROLE\",\n        \"estado\": true,\n        \"google\": false,\n        \"_id\": \"5cfaa1ef278a612018fede46\",\n        \"nombre\": \"Ignacio Cruz\",\n        \"email\": \"pacheco15@outlook.es\",\n        \"__v\": 0\n    }\n}"
+				},
+				{
+					"name": "Actualizar Usuario - 401 - Sin token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombre\" : \"Ignacio Cruz\",\n\t\"email\" : \"pacheco16@outlook.es\",\n\t\"role\" : \"SUPER_ROLE\",\n\t\"estado\" : 1,\n\t\"google\" : 0\n}"
+						},
+						"url": {
+							"raw": "localhost:1000/sys/user/chnage/5cfaa3626a328e237c93dd16",
+							"host": [
+								"localhost"
+							],
+							"port": "1000",
+							"path": [
+								"sys",
+								"user",
+								"chnage",
+								"5cfaa3626a328e237c93dd16"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "43"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2b-mr38iIjmu2vmmZpSMWRJVQZwo7g\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 18 Jun 2019 17:16:35 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"estatus\": false,\n    \"result\": \"err: Sin token\"\n}"
 				}
 			]
 		},
 		{
 			"name": "Listar Usuarios",
 			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -399,6 +582,11 @@
 						{
 							"key": "pag",
 							"value": "1"
+						},
+						{
+							"key": "cant",
+							"value": "2",
+							"disabled": true
 						}
 					]
 				}
@@ -466,6 +654,63 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"estatus\": true,\n    \"result\": {\n        \"row_s\": [\n            {\n                \"role\": \"SUPER_ROLE\",\n                \"estado\": false,\n                \"google\": false,\n                \"_id\": \"5cfa99f071f1b82cf85c74bb\",\n                \"nombre\": \"Ignacio Cruz\",\n                \"email\": \"pacheco1@outlook.es\",\n                \"__v\": 0\n            }\n        ]\n    }\n}"
+				},
+				{
+					"name": "Listar Usuarios - 401 - Sin token",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1000/sys/user/search/?pag=1",
+							"host": [
+								"localhost"
+							],
+							"port": "1000",
+							"path": [
+								"sys",
+								"user",
+								"search",
+								""
+							],
+							"query": [
+								{
+									"key": "pag",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "43"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2b-mr38iIjmu2vmmZpSMWRJVQZwo7g\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 17 Jun 2019 23:51:59 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"estatus\": false,\n    \"result\": \"err: Sin token\"\n}"
 				},
 				{
 					"name": "Listar Usuarios - 200 - Paginado - OK",
@@ -899,6 +1144,176 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"estatus\": false,\n    \"err\": {\n        \"message\": \"Cast to ObjectId failed for value \\\"5cfa99f071f1b82cf85c74bb_\\\" at path \\\"_id\\\" for model \\\"usuario\\\"\",\n        \"name\": \"CastError\",\n        \"stringValue\": \"\\\"5cfa99f071f1b82cf85c74bb_\\\"\",\n        \"kind\": \"ObjectId\",\n        \"value\": \"5cfa99f071f1b82cf85c74bb_\",\n        \"path\": \"_id\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "loggin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ffe1c2cb-bb5f-46ac-ad47-1f687784a581",
+						"exec": [
+							"let token = pm.response.json();",
+							"",
+							"if(true === token.estatus){",
+							"    pm.environment.set(\"token\", token);",
+							"    ",
+							"    return false;",
+							"}",
+							"",
+							"pm.environment.set(\"token\", \"Sin Token\");",
+							"console.log(\"Sin token\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\n\t\"email\" : \"pacheco1@outlook.es\",\n\t\"password\" : \"Alpha12345\"\n}"
+				},
+				"url": {
+					"raw": "localhost:1000/loggin",
+					"host": [
+						"localhost"
+					],
+					"port": "1000",
+					"path": [
+						"loggin"
+					]
+				},
+				"description": "Validar Usuario y contraseña"
+			},
+			"response": [
+				{
+					"name": "loggin - 200 - OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\" : \"pacheco1@outlook.es\",\n\t\"password\" : \"Alpha12345\"\n}"
+						},
+						"url": {
+							"raw": "localhost:1000/loggin",
+							"host": [
+								"localhost"
+							],
+							"port": "1000",
+							"path": [
+								"loggin"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "251"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"fb-6x1cEroZf5Kbwb1k+EZHm3iukbA\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 17 Jun 2019 22:39:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"estatus\": true,\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhcyI6eyJpZCI6IjVjZmE5OWYwNzFmMWI4MmNmODVjNzRiYiIsImVtYWlsIjoicGFjaGVjbzFAb3V0bG9vay5lcyJ9LCJpYXQiOjE1NjA4MTExNDAsImV4cCI6MTU2MDg5NzU0MH0.zJliAovMmvvvcRHj-YUrYAK4F7YvG4nfEw4TJonYWO4\"\n}"
+				},
+				{
+					"name": "loggin - 200 -fail - Error de datos",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\" : \"pacheco1@outlook.es\",\n\t\"password\" : \"Alpha12345x\"\n}"
+						},
+						"url": {
+							"raw": "localhost:1000/loggin",
+							"host": [
+								"localhost"
+							],
+							"port": "1000",
+							"path": [
+								"loggin"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "51"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"33-c5OD5jMzQ1PgFXHllSu6S7N9wwY\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 17 Jun 2019 18:21:23 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"estatus\": false,\n    \"result\": \"err: Datos incorrectos\"\n}"
 				}
 			]
 		}
