@@ -17,7 +17,7 @@ function onSignIn(googleUser) {
             return false;
         })
         .then(function(json) {
-            if(false === json.estatus || [] === json.result.length){
+            if(false === json.estatus || [] === json.result){
                 alert('Autentificacion fallida');
 
                 return false;
