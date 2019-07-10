@@ -17,15 +17,15 @@ function onSignIn(googleUser) {
             return false;
         })
         .then(function(json) {
-            if(false === json.estatus || [] === json.result){
+            if(false === json.estatus){
                 alert('Autentificacion fallida');
 
                 return false;
             }
 
-            return json.result;
+            return json.token;
         })
-        .then(function(res){
-            console.log(res);
+        .then(function(token){
+            console.log(token);
         });
 }
