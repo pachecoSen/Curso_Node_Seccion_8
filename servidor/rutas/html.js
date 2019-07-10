@@ -9,7 +9,7 @@ module.exports = app => {
     app.get(`${base_uri}/inicio`, (req, res) => {
         const title = "Inicio - Google";
         let { host } = req.headers;
-        host = `${ 'server-seccion-8.herokuapp.com' !== host ? req.protocol : 'https' }://${host}`;
+        host = `${ 'server-seccion-8.herokuapp.com' !== host ? req.protocol : 'https' }://${ host }`;
         res.render('inicio',{ title, apiKey, host });
     });
 };
