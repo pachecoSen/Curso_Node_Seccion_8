@@ -43,11 +43,10 @@
 					"raw": "{\n\t\"nombre\" : \"Ignacio Cruz\",\n\t\"email\" : \"pacheco20@outlook.es\",\n\t\"password\" : \"Alpha12345\",\n\t\"role\" : \"SUPER_ROLE\",\n\t\"estado\" : 1,\n\t\"google\" : 0\n}"
 				},
 				"url": {
-					"raw": "localhost:1000/sys/user/new",
+					"raw": "{{host}}/sys/user/new",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "1000",
 					"path": [
 						"sys",
 						"user",
@@ -339,11 +338,10 @@
 					"raw": "{\n\t\"nombre\" : \"Ignacio Cruz\",\n\t\"email\" : \"pacheco16@outlook.es\",\n\t\"role\" : \"SUPER_ROLE\",\n\t\"estado\" : 1,\n\t\"google\" : 0\n}"
 				},
 				"url": {
-					"raw": "localhost:1000/sys/user/chnage/5cfaa3626a328e237c93dd16",
+					"raw": "{{host}}/sys/user/chnage/5cfaa3626a328e237c93dd16",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "1000",
 					"path": [
 						"sys",
 						"user",
@@ -567,11 +565,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:1000/sys/user/search/?pag=1",
+					"raw": "{{host}}/sys/user/search/?pag=1",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "1000",
 					"path": [
 						"sys",
 						"user",
@@ -903,11 +900,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:1000/sys/user/lock/5cfa99f071f1b82cf85c74bb",
+					"raw": "{{host}}/sys/user/lock/5cfa99f071f1b82cf85c74bb",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "1000",
 					"path": [
 						"sys",
 						"user",
@@ -1028,11 +1024,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:1000/sys/user/unlock/5cfa99f071f1b82cf85c74bb",
+					"raw": "{{host}}/sys/user/unlock/5cfa99f071f1b82cf85c74bb",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "1000",
 					"path": [
 						"sys",
 						"user",
@@ -1153,12 +1148,12 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ffe1c2cb-bb5f-46ac-ad47-1f687784a581",
+						"id": "0963361a-283e-413d-b966-5369479f1294",
 						"exec": [
 							"let token = pm.response.json();",
 							"",
 							"if(true === token.estatus){",
-							"    pm.environment.set(\"token\", token);",
+							"    pm.environment.set(\"token\", token.token);",
 							"    ",
 							"    return false;",
 							"}",
@@ -1171,6 +1166,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXkiOiJVMkZzZEdWa1gxL0Q1RmczUGhoWEFPdUl4SmZrcmYrbWNmK09xSzlvYnhFPSIsInRva2VuIjoiZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SjBiMnRsYmlJNklqWTJNV1poTUdZeFpHVmhObUpqWlRZeFpEUTNNRGN4TkRkbU5UZGhORGsyTlRNNE4ySTFNalEzTWprd1lXWm1NV1V6WlRWa09EYzBJaXdpYVdGMElqb3hOVFUyTVRFNE9USTNMQ0psZUhBaU9qRTFOVFl4TmpJeE1qZDkuaWRMNkp6SUJLNmZQQkVYQ1IyNnV0WjRBaVJPaGNpcWJ0S2lUTDBOY1ZLVXZTMmhYOGxhU2RUVW9aT3M4V2FCbTBtNHI1enMxVFhtTnBNcmNncTBhVEEiLCJwZXJmaWwiOnsiaWRfcGVyc29uYSI6NTI3LCJub21icmUiOiJNYXJpYSIsImFwZWxsaWRvX3BhdGVybm8iOiJPcm96Y28iLCJhcGVsbGlkb19tYXRlcm5vIjpudWxsLCJlbWFpbCI6Im1hcmlhLm9yb3pjb0B1YW5sbWV4aWNvLm14IiwidGVsZWZvbm8iOiI3MjExODM3Mjk1IiwidGlwbyI6IklucXVpbGlubyIsInJvbCI6WyJSZXNpZGVudGUiXSwiZGVwYXJ0YW1lbnRvIjp7ImlkZW50aWZpY2Fkb3IiOjU3MzksInBpc28iOiIzOSIsImVkaWZpY2lvIjoiVG9ycmUgRXN0ZSIsInRpcG8iOiJUZXJyYXphIn0sImF2YXRhciI6Imh0dHA6Ly8xMjcuMC4wLjE6MjAwL2ZpbGUvYXZhdGFyLzliZjMxYzdmZjA2MjkzNmE5NmQzYzhiZDFmOGYyZmYzIn0sImlhdCI6MTU1NjExODkyOH0.MMbqdg1BhccqDsgaHH66V3wJhFMmNWsL6g4o1knO5i4",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
@@ -1182,14 +1187,13 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "\t{\n\t\"email\" : \"pacheco1@outlook.es\",\n\t\"password\" : \"Alpha12345\"\n}"
+					"raw": "{\n\t\"email\" : \"pacheco20@outlook.es\",\n\t\"password\" : \"Alpha12345\"\n}"
 				},
 				"url": {
-					"raw": "localhost:1000/loggin",
+					"raw": "{{host}}/loggin",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "1000",
 					"path": [
 						"loggin"
 					]
@@ -1314,6 +1318,125 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"estatus\": false,\n    \"result\": \"err: Datos incorrectos\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Valida Token Google",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"token\" : \"eyJhbGciOiJSUzI1NiIsImtpZCI6ImFmZGU4MGViMWVkZjlmM2JmNDQ4NmRkODc3YzM0YmE0NmFmYmJhMWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMjg4OTA3ODA2NjMzLXVrZjlrN2drZDAydDBxbnU0cDVsYWduMWVoZ201cDgyLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMjg4OTA3ODA2NjMzLXVrZjlrN2drZDAydDBxbnU0cDVsYWduMWVoZ201cDgyLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAyMDI4MTE1Mzk1MTU1MjM5MzUwIiwiZW1haWwiOiJwYWNoZWNvZHIyMDEzQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiNkZidFVuT1p5ZU85S2JNS2ZsbDEzUSIsIm5hbWUiOiJwYWNoZWNvIGlnbmFjaW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDYuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1lc2FxZERYTHc2NC9BQUFBQUFBQUFBSS9BQUFBQUFBQUFJdy9NTGZiMjFsRnUyTS9zOTYtYy9waG90by5qcGciLCJnaXZlbl9uYW1lIjoicGFjaGVjbyIsImZhbWlseV9uYW1lIjoiaWduYWNpbyIsImxvY2FsZSI6ImVzIiwiaWF0IjoxNTYyNzc3NjMzLCJleHAiOjE1NjI3ODEyMzMsImp0aSI6ImQ5ODBkYTU1N2ZhOWNkMjI1NmU5ZTkzMGI1NTYzMmQyZTVkMTg5ZTIifQ.Nm5G-mU0maDmBnbGFH7QiXH3LMYvaztZJVb1K4eaP_2TrzxkuvV685_pJ-3WaSUvUwEqa4666Gq_ZLYrCre8RB6P9CKv5frZCI6kmSO5KJyCZboVijJIzr8bCgRB7gSBmv9iQzYSlfxBBt2qHk_Mz_4hezhl7AuUn0yo0Vzf9jyy9ISsDRzPBZI_L0qZm8nQNvisPD8H02cNnZ0x-Ok9qX2X-IUfJr0XYG7mtX_GxMW5veqqLMiuG8A7nQnCLJE8G7L0nmSanmKOVloTIXaLbmamAbhXPFNfqSwRf6dqOdfa-DFvSprW8Aqq6Vw56YPbByjSDoT_sZlqSo-CvkxH-Q\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}/token/sign/in",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"token",
+						"sign",
+						"in"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Valida Token Google - 200 - Token Valido",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"token\" : \"eyJhbGciOiJSUzI1NiIsImtpZCI6ImFmZGU4MGViMWVkZjlmM2JmNDQ4NmRkODc3YzM0YmE0NmFmYmJhMWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMjg4OTA3ODA2NjMzLXVrZjlrN2drZDAydDBxbnU0cDVsYWduMWVoZ201cDgyLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMjg4OTA3ODA2NjMzLXVrZjlrN2drZDAydDBxbnU0cDVsYWduMWVoZ201cDgyLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAyMDI4MTE1Mzk1MTU1MjM5MzUwIiwiZW1haWwiOiJwYWNoZWNvZHIyMDEzQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiNkZidFVuT1p5ZU85S2JNS2ZsbDEzUSIsIm5hbWUiOiJwYWNoZWNvIGlnbmFjaW8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDYuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1lc2FxZERYTHc2NC9BQUFBQUFBQUFBSS9BQUFBQUFBQUFJdy9NTGZiMjFsRnUyTS9zOTYtYy9waG90by5qcGciLCJnaXZlbl9uYW1lIjoicGFjaGVjbyIsImZhbWlseV9uYW1lIjoiaWduYWNpbyIsImxvY2FsZSI6ImVzIiwiaWF0IjoxNTYyNzc3NjMzLCJleHAiOjE1NjI3ODEyMzMsImp0aSI6ImQ5ODBkYTU1N2ZhOWNkMjI1NmU5ZTkzMGI1NTYzMmQyZTVkMTg5ZTIifQ.Nm5G-mU0maDmBnbGFH7QiXH3LMYvaztZJVb1K4eaP_2TrzxkuvV685_pJ-3WaSUvUwEqa4666Gq_ZLYrCre8RB6P9CKv5frZCI6kmSO5KJyCZboVijJIzr8bCgRB7gSBmv9iQzYSlfxBBt2qHk_Mz_4hezhl7AuUn0yo0Vzf9jyy9ISsDRzPBZI_L0qZm8nQNvisPD8H02cNnZ0x-Ok9qX2X-IUfJr0XYG7mtX_GxMW5veqqLMiuG8A7nQnCLJE8G7L0nmSanmKOVloTIXaLbmamAbhXPFNfqSwRf6dqOdfa-DFvSprW8Aqq6Vw56YPbByjSDoT_sZlqSo-CvkxH-Q\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/token/sign/in",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"token",
+								"sign",
+								"in"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Origin, X-Requested-With, Content-Type, Accept"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "256"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"100-KVNL5N9VX2UaDsFT7e99Ie9Jb54\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 10 Jul 2019 16:54:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"estatus\": true,\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhcyI6eyJpZCI6IjVkMjYxNmNlZjk5ZDk2MGE1MDExNWU0YiIsImVtYWlsIjoicGFjaGVjb2RyMjAxM0BnbWFpbC5jb20ifSwiaWF0IjoxNTYyNzc3NjcwLCJleHAiOjE1NjI4NjQwNzB9.M6jqM3p_ZAww6yZorKSgnjMEJf4V02nNL91stnL2cdg\"\n}"
 				}
 			]
 		}

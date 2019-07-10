@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
 function onSignIn(googleUser) {
     const token = googleUser.getAuthResponse().id_token;
 
