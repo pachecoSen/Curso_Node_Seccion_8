@@ -1,12 +1,17 @@
 "use strict";
 require('module-alias/register');
 
+require('@confi/hbs');
+
 const express = require('express'),
-    { json:BP_Json } = require('body-parser');
+    { resolve } = require('path');
+
 const app = express();
 
-//Parse los dataos en Formato JSON
-app.use(BP_Json());
+app.use(express.static(resolve('./public/html')));
+
+app.set('view engine', 'hbs');
+app.set('views', resolve('./public/views'));
 
 require('./middleware')(app);
 require('./rutas')(app);

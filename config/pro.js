@@ -18,5 +18,6 @@ pro.URL_HOST = `mongodb+srv://${ process.env.MONGODBUSER }:${ process.env.MONGOD
 pro.CICLOS = 15;
 pro.SECRET_TOKEN = process.env.ITSECRET;
 pro.CADUCA = process.env.TIME_CADUCA;
+pro.API_KEY_SIGN_IN = process.env.API_KEY_SIGN_IN;
 
 module.exports = pro;

@@ -6,9 +6,16 @@ let logginMid = {};
 
 logginMid.setData = (req, res, next) => {
     const { path } = req;
-
     if('/loggin' === path){
         const item = ['email', 'password'];
+        item.forEach(i => {
+            if(empty(req.body[i]))
+                return res.status(400).json({ "estatus" : false, "res": `Dato ${ i } faltante.` }).end();
+        });
+    }
+
+    if('/token/sign/in' === path){
+        const item = ['token'];
         item.forEach(i => {
             if(empty(req.body[i]))
                 return res.status(400).json({ "estatus" : false, "res": `Dato ${ i } faltante.` }).end();

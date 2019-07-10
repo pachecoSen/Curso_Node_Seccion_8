@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{title}}</title>
+    <base href="{{host}}" target="_blank">
+
+    <!--ID Google Api-->
+    <meta name="google-signin-client_id" content="{{apiKey}}">
+</head>
+<body>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <a href="#" onclick="signOut();">Sign out</a>
+    
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="./js/signIn.js" async></script>
+    <script src="./js/signOut.js" async></script>
+</body>
+</html>
