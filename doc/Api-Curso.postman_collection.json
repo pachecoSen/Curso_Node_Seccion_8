@@ -1159,7 +1159,7 @@
 							"}",
 							"",
 							"pm.environment.set(\"token\", \"Sin Token\");",
-							"console.log(\"Sin token\")"
+							"console.log(\"Sin token\");"
 						],
 						"type": "text/javascript"
 					}
@@ -1323,6 +1323,27 @@
 		},
 		{
 			"name": "Valida Token Google",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "73937e7f-711b-4816-a738-7798c02842b9",
+						"exec": [
+							"let token = pm.response.json();",
+							"",
+							"if(true === token.estatus){",
+							"    pm.environment.set(\"token\", token.token);",
+							"    ",
+							"    return false;",
+							"}",
+							"",
+							"pm.environment.set(\"token\", \"Sin Token\");",
+							"console.log(\"Sin token\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
