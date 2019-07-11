@@ -77,6 +77,22 @@ class Query {
         return this;
     }
 
+    search(){
+        let { modelo, filtro, value, select } = this;
+        if(empty(filtro) && empty(value)){
+            return modelo.find({'estado' : true}, select)
+                .exec().then(row_s => {
+                    return { row_s };
+                });
+        }
+
+        let where = !_.isObject(filtro) ? {} : filtro;
+        if(!_.isObject(filtro))
+            where[`${filtro}`] = value;
+
+        return modelo.find(where, select).exec().then(row_s => { return { row_s }; });
+    }
+
     find(){
         let { modelo, pagina, limite, filtro, value, select } = this;
         if(empty(filtro) && empty(value)){

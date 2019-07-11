@@ -8,7 +8,8 @@ const morgan = require('morgan'),
 const valida = require('./valida_mid'),
     val_rol = require('./rol_mid'),
     { setData:loginMid } = require('./loggin_mid'),
-    { setData:usuarioMid } = require('./usuario_mid');
+    { setData:usuarioMid } = require('./usuario_mid'),
+    categoriaMid = require('./categoria_mid');
 
 module.exports = app => {
     //Desabilityar x-powered-by
@@ -28,4 +29,5 @@ module.exports = app => {
     app.use('/sys', valida, val_rol);
     app.use(['/loggin', '/token/sign/in'], loginMid);
     app.use('/sys/user/', usuarioMid);
+    app.use('/sys/categoria', categoriaMid);
 };

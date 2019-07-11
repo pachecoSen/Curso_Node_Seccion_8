@@ -6,7 +6,7 @@ const { entorno } = require('@confi/yargs'),
 
 const empty = require('is-empty'),
     { compare } = require('bcrypt'),
-    { isEmpty } = require('underscore'),
+    { isEmpty, pick } = require('underscore'),
     hash = require('bcrypt');
 
 const ModelUsuarioData = require('@basemodel/usuario_mod');
@@ -66,37 +66,27 @@ module.exports = app => {
         return false;
     });
 
-    app.post('/loggin', (req, res) => {
-        const { email, password } = req.body;
-        const search = Query.setModelo(ModelUsuarioData).setFiltro({ email }).setSelect('password');
-        search.find()
-            .then(result => result.row_s)
-            .then(result => {
-                if(empty(result))
-                    return res.status(200).json({ "estatus" : false, "result" : `err: Datos incorrectos` });
+    app.post('/loggin', async (req, res) => {
+        try {
+            const { email, password } = req.body;
+            const search = Query.setModelo(ModelUsuarioData).setFiltro({ email }).setSelect('password');
+            let result = await search.find().then(result => result.row_s);
+            search.end();
+            if(empty(result))
+                return res.status(200).json({ "estatus" : false, "result" : `err: Datos incorrectos` });
+            
+            result = pick(result[0], '_id', 'password');
+            result = await compare(password, result.password).then(est => { return {'id' : result._id, est }; });
+            if(false === result.est)
+                return res.status(200).json({ "estatus" : false, "result" : `err: Datos incorrectos` });
 
-                return result[0];
-            })
-            .then(result => {
-                const { _id:id, password } = result;
-
-                return {id, password };
-            })
-            .then(result => compare(password, result.password).then(est => { return {'id' : result.id, est }; }))
-            .then(result => {
-                if(false === result.est)
-                    return res.status(200).json({ "estatus" : false, "result" : `err: Datos incorrectos` });
-
-                const { id } = result;
-                
-                return Jwt.setDatas( { id, email } ).token();
-            })
-            .then(token => res.status(200).json({ "estatus" : true, token }))
-            .catch(err => {
-                log('./logs/db_err', err);
-                return res.status(400).json({ "estatus" : false, err });
-            });
-
-        search.end();
+            const { id } = result;
+            const token = await Jwt.setDatas( { id, email } ).token();
+            
+            return res.status(200).json({ "estatus" : true, token });
+        } catch (err) {
+            log('./logs/db_err', err);
+            return res.status(400).json({ "estatus" : false, err });
+        }
     });
 };
