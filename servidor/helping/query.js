@@ -39,6 +39,16 @@ class Query {
         this.select = _select;
     }
 
+    set Join(_table){
+        this.join = _table;
+    }
+
+    setJoin(_table){
+        this.join = _table;
+
+        return this;
+    }
+
     setSelect(_select){
         this.select = _select;
 
@@ -78,19 +88,24 @@ class Query {
     }
 
     search(){
-        let { modelo, filtro, value, select } = this;
+        let { modelo, filtro, value, select, join:joinTable } = this;
         if(empty(filtro) && empty(value)){
-            return modelo.find({'estado' : true}, select)
-                .exec().then(row_s => {
-                    return { row_s };
-                });
+            let sql = modelo.find({'estado' : true}, select);
+            if(!empty(joinTable))
+                sql = sql.populate(joinTable);
+
+            return sql.exec().then(row_s => { return { row_s };});
         }
 
         let where = !_.isObject(filtro) ? {} : filtro;
         if(!_.isObject(filtro))
             where[`${filtro}`] = value;
 
-        return modelo.find(where, select).exec().then(row_s => { return { row_s }; });
+        let sql = modelo.find(where, select);
+        if(!empty(joinTable))
+            sql = sql.populate(joinTable);
+
+        return sql.exec().then(row_s => { return { row_s }; });
     }
 
     find(){
@@ -128,6 +143,7 @@ class Query {
         this.filtro = null;
         this.value = null;
         this.select = '';
+        this.join = null;
     }
 }
 

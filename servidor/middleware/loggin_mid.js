@@ -1,28 +1,23 @@
 "use strict";
 
-const empty = require('is-empty');
+const isEmpty = require('is-empty');
 
-let logginMid = {};
-
-logginMid.setData = (req, res, next) => {
-    const { path } = req;
-    if('/loggin' === path){
-        const item = ['email', 'password'];
-        item.forEach(i => {
-            if(empty(req.body[i]))
+module.exports = (req, res, next) => {
+    if('/loggin' === req.baseUrl){
+        ['email', 'password'].forEach(i => {
+            if(isEmpty(req.body[i]))
                 return res.status(400).json({ "estatus" : false, "res": `Dato ${ i } faltante.` }).end();
         });
+
+        return next();
     }
+    
+    if('/token/sign/in' === req.baseUrl){
+        if(isEmpty(req.body.token))
+            return res.status(400).json({ "estatus" : false, "res": `Dato token faltante.` }).end();
 
-    if('/token/sign/in' === path){
-        const item = ['token'];
-        item.forEach(i => {
-            if(empty(req.body[i]))
-                return res.status(400).json({ "estatus" : false, "res": `Dato ${ i } faltante.` }).end();
-        });
+        return next();
     }
 
     return next();
 };
-
-module.exports = logginMid;

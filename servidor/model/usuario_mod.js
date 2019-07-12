@@ -18,4 +18,4 @@ newShema.methods.toJSON = function () {
     return user;
 }
 
-module.exports = model('usuario', newShema);
+module.exports = model('usuarios', newShema);

@@ -7,8 +7,8 @@ const morgan = require('morgan'),
 
 const valida = require('./valida_mid'),
     val_rol = require('./rol_mid'),
-    { setData:loginMid } = require('./loggin_mid'),
-    { setData:usuarioMid } = require('./usuario_mid'),
+    loginMid = require('./loggin_mid'),
+    usuarioMid = require('./usuario_mid'),
     categoriaMid = require('./categoria_mid');
 
 module.exports = app => {
@@ -26,8 +26,8 @@ module.exports = app => {
 
     app.use(helmet(), BP_Json(), morgan('short'));
 
-    app.use('/sys', valida, val_rol);
     app.use(['/loggin', '/token/sign/in'], loginMid);
-    app.use('/sys/user/', usuarioMid);
+    app.use('/sys', valida);
+    app.use('/sys/user', usuarioMid);
     app.use('/sys/categoria', categoriaMid);
 };

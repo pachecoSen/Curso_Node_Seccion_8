@@ -1,13 +1,25 @@
 "use strict";
 
-const empty = require('is-empty'),
-    { pick } = require('underscore');
+const isEmpty = require('is-empty'),
+    { basename } = require('path');
 
-let usuarioMid = {};
+module.exports = (req, res, next) => {
+    if('new' === basename(req.url)){
+        ['nombre', 'email', 'password'].forEach(i => {
+            if(isEmpty(req.body[i]))
+                return res.status(400).json({ "estatus" : false, "res": `Dato ${ i } faltante.` }).end();
+        });
 
-const base_uri = '/sys/user';
+        Object.assign(req.body, {'role' : 'ADMIN_ROLE', 'google' : 0, 'estado' : 1});
+        
+        return next();
+    }
 
-usuarioMid.setData = (req, res, next) => {if(!empty(req._parsedUrl.pathname)){
+    return next();
+};
+
+/*usuarioMid.setData = (req, res, next) => {
+    if(!empty(req._parsedUrl.pathname)){
         const { pathname:_path } = req._parsedUrl;
         if(`${ base_uri }/new` === _path){
             let item = ['nombre', 'email', 'password'];
@@ -15,7 +27,7 @@ usuarioMid.setData = (req, res, next) => {if(!empty(req._parsedUrl.pathname)){
                 if(empty(req.body[i]))
                     return res.status(400).json({ "estatus" : false, "res": `Dato ${ i } faltante.` }).end();
             });
-            req.body['role'] = 'ADMIN_ROLE';
+            req.body['role'] = 'SUPER_ROLE';
             req.body['estado'] = 1;
             req.body['google'] = 0;
         }
@@ -48,4 +60,4 @@ usuarioMid.setData = (req, res, next) => {if(!empty(req._parsedUrl.pathname)){
     return next();
 }
 
-module.exports = usuarioMid;
+module.exports = usuarioMid;*/

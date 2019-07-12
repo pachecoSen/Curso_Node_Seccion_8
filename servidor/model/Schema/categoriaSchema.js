@@ -10,9 +10,10 @@ module.exports = {
         'required' : false,
         'default' : 'Sin Descripcion'
     },
-    'usuario' : {
+    'usuarios' : {
         'type' : Schema.Types.ObjectId,
-        'required' : true
+        'required' : true,
+        'ref': "usuarios"
     },
     'estado' : {
         'type' : Boolean,
