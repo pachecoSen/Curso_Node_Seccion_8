@@ -27,7 +27,7 @@ module.exports = app => {
     app.use(helmet(), BP_Json(), morgan('short'));
 
     app.use(['/loggin', '/token/sign/in'], loginMid);
-    app.use('/sys', valida);
+    //app.use('/sys', valida);
     app.use('/sys/user', usuarioMid);
     app.use('/sys/categoria', categoriaMid);
     app.use('/sys/producto', productoMid);
