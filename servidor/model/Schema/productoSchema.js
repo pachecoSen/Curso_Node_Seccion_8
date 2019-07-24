@@ -1,10 +1,14 @@
 const { Schema } = require('@baseserver/conn');
 
 module.exports = {
-    'categoria' : {
+    'producto' : {
         'type' : String,
-        'required' : [true, 'categoria Requerido'],
+        'required' : [true, 'Nombre de Producto Requerido'],
         'unique': true
+    },
+    'precio' : {
+        'type' : Number,
+        'required' : [true, 'Precio de Producto Requerido']
     },
     'descripcion' : {
         'type' : String,
@@ -15,6 +19,11 @@ module.exports = {
         'type' : Schema.Types.ObjectId,
         'required' : true,
         'ref': "usuarios"
+    },
+    'categorias' : {
+        'type' : Schema.Types.ObjectId,
+        'required' : true,
+        'ref': "categorias"
     },
     'estado' : {
         'type' : Boolean,

@@ -6,10 +6,10 @@ const morgan = require('morgan'),
     cors = require('cors');
 
 const valida = require('./valida_mid'),
-    val_rol = require('./rol_mid'),
     loginMid = require('./loggin_mid'),
     usuarioMid = require('./usuario_mid'),
-    categoriaMid = require('./categoria_mid');
+    categoriaMid = require('./categoria_mid'),
+    productoMid = require('./producto_mid');
 
 module.exports = app => {
     //Desabilityar x-powered-by
@@ -30,4 +30,5 @@ module.exports = app => {
     app.use('/sys', valida);
     app.use('/sys/user', usuarioMid);
     app.use('/sys/categoria', categoriaMid);
+    app.use('/sys/producto', productoMid);
 };
