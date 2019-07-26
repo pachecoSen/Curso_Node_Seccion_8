@@ -14,6 +14,6 @@ app.set('view engine', 'hbs');
 app.set('views', resolve('./public/views'));
 
 require('./middleware')(app);
-require('./rutas')(app);
+require('./routes')(app);
 
 module.exports = app;

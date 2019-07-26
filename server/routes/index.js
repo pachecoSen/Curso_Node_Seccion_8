@@ -4,7 +4,7 @@ require('module-alias/register');
 const log = require('@logs');
 
 module.exports = app => {
-    ['inicio', 'usuario', 'html', 'categoria', 'producto'].forEach(i => {
+    ['inicio', 'usuario', 'html', 'categoria', 'producto', 'upload'].forEach(i => {
         try {
             require(`./${ i }`)(app);
         }

@@ -7,6 +7,9 @@
 #Editores
 *.code-workspace
 
+#Dir
+/uploads
+
 #Otros
 package-lock.json
 .eslintrc.js
