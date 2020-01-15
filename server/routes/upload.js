@@ -5,14 +5,16 @@ const { resolve, join } = require('path'),
     { Terminal:terminal } = require('terminal-kit'),
     { getExtension } = require('mime');
 
-const ModelImagenData = require('@basemodel/imagen_mod');
+const ModelImagenData = require('@basemodel/imagen_mod'),
+    ModelProductoData = require('@basemodel/producto_mod'),
+    ModelUsuarioData = require('@basemodel/usuario_mod');
 
 const log = require('@logs');
 
 const base_uri = '/sys/upload';
 let rutaUploads = resolve('./uploads');
 
-const almacena = (file, original, tag) => {
+const almacenado = (file, original, tag) => {
     const fecha = new Date().getDate(),
         newImagen = new ModelImagenData({ file, original, tag, fecha });
 
@@ -25,9 +27,15 @@ const almacena = (file, original, tag) => {
                 return false;
             }
 
-            res(imagen);
+            res(imagen._id);
         });
     });
+};
+
+const asociar = (img, _id, modelo) => {
+    modelo = 'user' === modelo ? ModelUsuarioData : ModelProductoData;
+    
+    return modelo.updateOne({ _id }, { img })
 };
 
 module.exports = app => {
@@ -64,10 +72,11 @@ module.exports = app => {
             }
             
             const tag = req.params.opt === 'user' ? 'user' : 'producto';
-            //const newImagen = await almacena(nameFile, ima.name, tag);
-            //console.log(newImagen);
-
-            return res.status(200).json({ "estatus" : true, "res": `Archivo ${ima.name} almacenado` }).end();
+            let newImagen = await almacenado(nameFile, ima.name, tag);
+            newImagen = `${ req.protocol }://${ req.get('host') }/sys/down/ima/${ newImagen }`;
+            const result = await asociar(newImagen, req.params.id, req.params.opt);
+            
+            return res.status(200).json({ "estatus" : true, "res": `Archivo${ 1 !== result.ok ? 'no' : ''} ${ima.name} almacenado, para ${req.params.opt === 'user' ? 'usuario' : 'producto'} ID(${ req.params.id })` }).end();
         });
     });
 };

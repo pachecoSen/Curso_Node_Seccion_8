@@ -15,6 +15,10 @@ module.exports = {
         'required' : false,
         'default' : 'Sin Descripcion'
     },
+    'img' : {
+        'type' : String,
+        'required' : false
+    },
     'usuarios' : {
         'type' : Schema.Types.ObjectId,
         'required' : true,

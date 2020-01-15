@@ -17,17 +17,17 @@ module.exports = app => {
             where['_id'] = req.params.id;
 
         ModelProductoData
-            .find(where, ['producto', 'categoria', 'descripcion', 'usuarios'])
+            .find(where, ['producto', 'categoria', 'descripcion', 'usuarios', 'img'])
             .sort('categoria')
             .populate('usuarios', ['nombre', 'email'])
             .populate('categorias', ['categoria', 'descripcion'])
-            .exec((err, categorias) => {
+            .exec((err, producto) => {
                 if(err){
                     log('./logs/db_err', err);
                     return res.status(400).json({ "estatus" : false, err });
                 }
 
-                return res.status(200).json({ "estatus" : true, categorias })
+                return res.status(200).json({ "estatus" : true, producto })
             });
         
         return false;

@@ -6,6 +6,6 @@ const { entorno } = require('@confi/yargs'),
 
 const mongoose = require('mongoose');
 
-mongoose.connect(URL_HOST, { 'useNewUrlParser': true, 'useCreateIndex' : true });
+mongoose.connect(URL_HOST, { 'useNewUrlParser': true, 'useCreateIndex' : true, 'useUnifiedTopology' : true });
 
 module.exports = mongoose;

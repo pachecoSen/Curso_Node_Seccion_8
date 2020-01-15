@@ -1,4 +1,4 @@
-const { Schema } = require('@baseserver/conn');
+"use strict";
 
 module.exports = {
     'file' : {
@@ -15,12 +15,12 @@ module.exports = {
         'required' : true
     },
     'fecha' : {
-        'type' : Schema.type.Date,
+        'type' : Date,
         'required' : true
     },
     'estado' : {
         'type' : Boolean,
         'required' : true,
         'default' : true
-    },
+    }
 };
